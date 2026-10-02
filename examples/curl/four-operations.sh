@@ -9,7 +9,8 @@ set -euo pipefail
 BASE="${ATLAS_BASE:-https://api.reliantscale.com}"
 
 # A stable key per logical action. Reuse it on retry — that is the point of it.
-KEY="act-$(date -u +%Y%m%dT%H%M%S)-$RANDOM"
+# Idempotency keys are global across organisations: use a UUID, never a sequential id.
+KEY="act-$(uuidgen 2>/dev/null || cat /proc/sys/kernel/random/uuid)"
 
 echo "== 1. submit an accountable action"
 # 200 = allowed, 403 = denied WITH A FULL RECEIPT. A denial is accountable work, not an error.

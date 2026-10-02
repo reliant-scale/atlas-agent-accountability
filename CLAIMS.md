@@ -25,7 +25,7 @@ this file states the boundary publicly and holds us to it.
 - accountability records outliving the credential and termination
 - receipts, retry-safe metering by idempotency key, free reads
 - forensic replay that names what changed since, and says so when nothing has
-- tenant isolation that does not confirm existence across a boundary
+- tenant isolation on reads: another organisation's receipt or replay returns `404` (idempotency keys are global today; see the README)
 - a governed customer creation protocol that is payment-gated, atomic, idempotent and attributed
 - proven recovery: encrypted off-host retention and a scheduled restore rehearsal
 

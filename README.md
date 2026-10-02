@@ -91,9 +91,13 @@ could be billed twice, so the service refuses rather than guessing. The same key
 
 **Reads are never charged.** Inspecting your own record must not create a reason to inspect less of it.
 
-**Tenant boundaries do not confirm existence.** A receipt belonging to another organisation returns `404`, not
-`403`, so a stranger learns nothing from the difference. An unknown credential and a revoked credential are
-refused identically, so neither teaches an attacker which keys once existed.
+**Reads do not confirm existence across a tenant boundary.** Reading a receipt or replay that belongs to another
+organisation returns `404`, not `403`. An unknown credential and a revoked credential are refused identically, so
+neither teaches an attacker which keys once existed.
+
+**Idempotency keys are global today — use a UUID.** An `Idempotency-Key` already used by another organisation is
+refused with `409`. Generate keys that are unique across everyone (for example a random UUID), not sequential
+business identifiers such as `order-1001`. Per-organisation key scoping is being worked on.
 
 ---
 

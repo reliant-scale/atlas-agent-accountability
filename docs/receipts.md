@@ -34,7 +34,8 @@ prevented is exactly the thing you will want evidence of later.
 service refuses the request rather than guessing your intent.
 
 A repeated key returns the existing receipt with `billed: false`. A key already used by another organisation
-returns `409`.
+returns `409`: keys are global across all organisations today, so generate keys that are unique across everyone
+(for example a random UUID) rather than sequential business identifiers.
 
 ## Reads are free
 

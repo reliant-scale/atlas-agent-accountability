@@ -8,9 +8,9 @@ from __future__ import annotations
 
 import json
 import os
+import uuid
 import urllib.error
 import urllib.request
-from datetime import datetime, timezone
 
 BASE = os.environ.get("ATLAS_BASE", "https://api.reliantscale.com")
 
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         raise SystemExit("set ATLAS_TOKEN and ATLAS_WORKSPACE")
 
     atlas = Atlas(token, workspace)
-    key = "act-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
+    key = "act-" + uuid.uuid4().hex   # idempotency keys are global across organisations: make them unique
 
     status, receipt = atlas.submit("action.propose", key,
                                    evidence_ref="doc:example#p1", observed_outcome="quote issued")
