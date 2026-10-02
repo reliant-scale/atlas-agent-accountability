@@ -207,34 +207,56 @@ components:
         billed:
           type: boolean
           description: False on a retry returning an existing receipt, and false for reads.
-        replay: { type: string, description: Path to the replay for this action. }
+        replay: { type: string, description: Path to the replay for this action. Returned when the action is submitted. }
+        workspace_id: { type: string }
+        principal: { type: string, description: "The acting principal, as type/id." }
+        credential_id: { type: string, description: The credential that acted (an identifier, never the secret). }
+        action_class: { type: string, description: Returned when the receipt is read. }
+        decided_at: { type: string, description: Returned when the receipt is read. }
+        charged_for_this_read: { type: boolean, description: Always false on a read. }
+
+    ReplayChange:
+      type: object
+      properties:
+        what: { type: string, description: "What changed, e.g. credential scopes, workspace entitlement, organization status." }
+        then: { description: The value knowable at decision time. }
+        now: { description: The value today. }
 
     Replay:
       type: object
       properties:
+        idempotency_key: { type: string }
+        decision: { type: string, enum: [ALLOW, DENY], description: The decision as it was made. Never re-decided against today. }
+        decided_at: { type: string }
+        knowable_at_the_time:
+          type: object
+          description: The stored decision-time envelope — the credential scopes, credential state, role and entitlement capabilities, organization, and evidence reference supplied at decision time.
+        changed_since:
+          type: array
+          items: { $ref: "#/components/schemas/ReplayChange" }
+          description: Named explicitly. An empty list means no later change has been admitted, which is itself a finding.
         replay_class:
           type: string
           const: FORENSIC_RECONSTRUCTION
           description: |
             Stated in the payload on purpose. Atlas reconstructs the stored decision-time envelope; it does not
             re-execute a model, and makes no claim about what any model would produce today.
-        decided_at: { type: string, format: date-time }
-        knowable_at_decision_time: { type: object }
-        changed_since:
-          type: array
-          items: { type: string }
-          description: Named explicitly. An empty list means no later change has been admitted, which is itself a finding.
+        replay_class_note: { type: string }
+        statement: { type: string, description: A plain-language statement of whether anything has changed since. }
+        charged_for_this_read: { type: boolean, description: Always false. }
 
     WhoAmI:
       type: object
       properties:
-        principal_id: { type: string }
-        principal_type: { type: string }
+        principal: { type: string, description: "The principal this credential acts as, as type/id." }
         organization_id: { type: string }
+        credential_id: { type: string }
         scopes:
           type: array
           items: { type: string }
           description: An upper bound on what this credential may attempt, never a grant.
+        note: { type: string }
+        charged_for_this_read: { type: boolean, description: Always false. }
 
     Error:
       type: object

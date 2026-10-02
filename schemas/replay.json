@@ -4,18 +4,59 @@
   "title": "Atlas replay",
   "description": "Forensic reconstruction of the stored decision-time envelope. Not model re-execution.",
   "type": "object",
-  "required": ["replay_class"],
+  "required": [
+    "replay_class",
+    "decision",
+    "knowable_at_the_time",
+    "changed_since"
+  ],
   "properties": {
+    "idempotency_key": {
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "ALLOW",
+        "DENY"
+      ],
+      "description": "The decision as it was made. Never re-decided against today."
+    },
+    "decided_at": {
+      "type": "string"
+    },
+    "knowable_at_the_time": {
+      "type": "object",
+      "description": "The stored decision-time envelope: credential scopes and state, role and entitlement capabilities, organization, and the evidence reference supplied."
+    },
+    "changed_since": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "what"
+        ],
+        "properties": {
+          "what": {
+            "type": "string"
+          },
+          "then": {},
+          "now": {}
+        }
+      },
+      "description": "Named explicitly. An empty array means no later change has been admitted, which is a finding rather than an absence of one."
+    },
     "replay_class": {
       "const": "FORENSIC_RECONSTRUCTION",
       "description": "Carried in the payload rather than only in documentation, so what is offered cannot be mistaken by an integrator or overstated by us."
     },
-    "decided_at": {"type": "string", "format": "date-time"},
-    "knowable_at_decision_time": {"type": "object"},
-    "changed_since": {
-      "type": "array",
-      "items": {"type": "string"},
-      "description": "Named explicitly. An empty array means no later change has been admitted, which is a finding rather than an absence of one."
+    "replay_class_note": {
+      "type": "string"
+    },
+    "statement": {
+      "type": "string"
+    },
+    "charged_for_this_read": {
+      "const": false
     }
   }
 }

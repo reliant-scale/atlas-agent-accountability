@@ -4,15 +4,66 @@
   "title": "Atlas accountability receipt",
   "description": "A durable, attributed record of one action and the inputs knowable when it was decided. Not a cryptographically signed attestation; it carries no signature or inclusion proof.",
   "type": "object",
-  "required": ["idempotency_key", "receipt_id", "decision"],
+  "required": [
+    "idempotency_key",
+    "receipt_id",
+    "decision"
+  ],
   "properties": {
-    "idempotency_key": {"type": "string"},
-    "receipt_id": {"type": "string"},
-    "decision": {"enum": ["ALLOW", "DENY"], "description": "DENY arrives with HTTP 403 and a full receipt. A refusal is accountable work and is metered."},
-    "reasons": {"type": "array", "items": {"type": "string"}},
-    "evidence_ref": {"type": "string", "description": "The evidence available at decision time, not what that source says now."},
-    "observed_outcome": {"type": "string"},
-    "billed": {"type": "boolean", "description": "False on a retry returning an existing receipt, and for all reads."},
-    "replay": {"type": "string"}
+    "idempotency_key": {
+      "type": "string"
+    },
+    "receipt_id": {
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "ALLOW",
+        "DENY"
+      ],
+      "description": "DENY arrives with HTTP 403 and a full receipt. A refusal is accountable work and is metered."
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_ref": {
+      "type": "string",
+      "description": "The evidence available at decision time, not what that source says now."
+    },
+    "observed_outcome": {
+      "type": "string"
+    },
+    "billed": {
+      "type": "boolean",
+      "description": "False on a retry returning an existing receipt, and for all reads."
+    },
+    "replay": {
+      "type": "string"
+    },
+    "workspace_id": {
+      "type": "string"
+    },
+    "principal": {
+      "type": "string",
+      "description": "type/id"
+    },
+    "credential_id": {
+      "type": "string"
+    },
+    "action_class": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "decided_at": {
+      "type": "string"
+    },
+    "charged_for_this_read": {
+      "type": "boolean"
+    }
   }
 }

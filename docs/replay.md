@@ -8,18 +8,38 @@ Only the second one defends a decision.
 
 ```json
 {
-  "replay_class": "FORENSIC_RECONSTRUCTION",
-  "decided_at": "2026-09-14T09:22:41Z",
-  "knowable_at_decision_time": {
-    "evidence_ref": "doc:contract-4471#p12",
-    "scopes": ["action.propose", "evidence.view"],
-    "principal_id": "agent_intake_03"
+  "idempotency_key": "intake-4471-approve",
+  "decision": "ALLOW",
+  "decided_at": "2026-09-14 09:22:41+00",
+  "knowable_at_the_time": {
+    "credential_scopes_at_decision": ["action.propose", "drill.read"],
+    "credential_state_at_decision": "ACTIVE",
+    "role_capabilities_at_decision": [],
+    "organization_at_decision": "org_…",
+    "entitlement_capabilities_at_decision": ["action.propose", "drill.read"],
+    "evidence_ref_supplied": "doc:contract-4471#p12",
+    "proposer_id": ""
   },
   "changed_since": [
-    "doc:contract-4471 was superseded 2026-09-19"
-  ]
+    { "what": "workspace entitlement", "then": ["action.propose", "drill.read"], "now": ["drill.read"] }
+  ],
+  "replay_class": "FORENSIC_RECONSTRUCTION",
+  "replay_class_note": "The decision-time envelope is reconstructed from the stored record. …",
+  "statement": "State has changed since this decision was made. The decision is reported as it was, against what was knowable then, not re-decided against today.",
+  "charged_for_this_read": false
 }
 ```
+
+## What `changed_since` compares
+
+Today, replay compares three things against the stored envelope, and names each one that differs:
+
+- the **credential's scopes**
+- the **workspace entitlement** capabilities
+- the **organization's status**
+
+It does not track changes to the evidence itself: `evidence_ref_supplied` is reported exactly as it was given at
+decision time.
 
 ## The boundary, stated in the payload
 
@@ -31,8 +51,8 @@ ask them to demonstrate it on last quarter's data before believing it.
 
 ## Empty is an answer
 
-When `changed_since` is empty, nothing later has been admitted against that evidence. That is a finding worth
-recording, not an absence of one.
+When `changed_since` is empty, none of the compared state has changed since the decision. That is a finding
+worth recording, not an absence of one.
 
 ## Why the envelope must be kept at decision time
 
