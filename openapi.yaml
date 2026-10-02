@@ -1,0 +1,246 @@
+openapi: 3.1.0
+
+# Reliant Scale Atlas — the four accountability operations, as deployed.
+#
+# Written from the deployed service, not from a design document. Every status code, header and field below is one
+# the live service returns. A contract that describes an intended API is worse than no contract: an integrator
+# discovers the difference at runtime, and a coding agent discovers it in production.
+#
+# WHAT THIS IS NOT. Atlas is not an A2A-conformant agent and this file does not claim to be an Agent Card. Thin A2A
+# and MCP adapters over these four operations are in qualification; neither is served by this API today, and no
+# /.well-known/agent-card.json is published. When an adapter is live it will be documented beside this contract.
+
+info:
+  title: Reliant Scale Atlas — Agent Accountability
+  version: "1.0"
+  summary: Record what an agent did, what it relied on, what it was allowed to do, and what happened afterward.
+  description: |
+    Atlas records consequential agent activity and makes it accountable after the fact.
+
+    Four operations and a scoped bearer credential. The surface is small deliberately: a service holding other
+    organisations' accountability records should not have a large attack surface.
+
+    Behaviour worth checking, because it is the behaviour that matters when something has gone wrong:
+
+    - **Revocation takes effect on the very next request.** There is no session and no cache; every request
+      re-reads the credential's state, so a revoked key stops working immediately rather than at the end of a
+      token lifetime.
+    - **A denial is accountable work.** An action refused for being outside its scope still produces a receipt
+      and is still metered. A prevented unauthorised action is the service doing its job.
+    - **The record outlives the credential.** Receipts survive revocation and termination.
+    - **Retrying is safe and is not billed twice.** The same `Idempotency-Key` returns the same receipt.
+    - **Reads are never charged**, so inspecting your own record does not create a reason to inspect less of it.
+    - **A receipt belonging to another organisation returns 404, not 403**, so a stranger learns nothing from the
+      difference.
+
+    Replay is FORENSIC RECONSTRUCTION of the stored decision-time envelope. It does not re-execute a model and
+    cannot tell you what a model would output today. The response says so in its own `replay_class` field.
+
+    Atlas is accountability infrastructure. It is not a compliance certification for any regulation.
+  contact:
+    name: Reliant Scale Technologies
+    url: https://reliantscale.com/atlas/integrate
+    email: partnerships@reliantscale.com
+
+servers:
+  - url: https://api.reliantscale.com
+    description: Production. Controlled enterprise pilot; no public signup or self-service credential.
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: accountability
+    description: The four operations.
+
+paths:
+  /v1/atlas/actions:
+    post:
+      tags: [accountability]
+      operationId: submitAccountableAction
+      summary: Submit an accountable action
+      description: |
+        One agent action through the governed lifecycle: the evidence it relied on, the action proposed, the
+        authority evaluation, the outcome, and a receipt.
+
+        `Idempotency-Key` is REQUIRED — without it a retry could be billed twice, so the service refuses rather
+        than guessing. A repeated key returns the existing receipt with `billed: false`.
+
+        A denial returns **403 with a full receipt body**, not an error. The refusal is the accountable event.
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema: { type: string }
+          description: Required. A retry with the same key returns the same receipt and is never billed again.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action, workspace_id]
+              properties:
+                action: { type: string, description: The action class being proposed. }
+                workspace_id: { type: string }
+                evidence_ref: { type: string, description: Reference to the evidence relied on at decision time. }
+                observed_outcome: { type: string }
+      responses:
+        "200":
+          description: Allowed. A receipt was created and the action is accounted for.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Receipt" }
+        "400":
+          description: Missing `Idempotency-Key`, missing `action` or `workspace_id`, or a body that is not JSON.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "401":
+          description: Credential not recognised. An unknown key and a revoked key are refused identically.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "403":
+          description: |
+            Denied — and this carries a FULL RECEIPT, not an error. The action was outside the credential's
+            scope, which is itself accountable work and is metered.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Receipt" } } }
+        "409":
+          description: That idempotency key belongs to another organisation.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+        "413":
+          description: Request body too large.
+          content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }
+
+  /v1/atlas/actions/{key}:
+    get:
+      tags: [accountability]
+      operationId: readReceipt
+      summary: Read the receipt
+      description: |
+        The accountability record for one action: decision, reasons, evidence reference, observed outcome, and
+        which principal and credential performed it. **Reads are never charged.**
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema: { type: string }
+          description: The idempotency key the action was submitted with.
+      responses:
+        "200":
+          content: { application/json: { schema: { $ref: "#/components/schemas/Receipt" } } }
+          description: The accountability record.
+        "401": { description: Credential not recognised. }
+        "404":
+          description: |
+            Not found — returned both for a key that does not exist AND for one belonging to another
+            organisation. Deliberate: a 403 would confirm the record exists to someone not entitled to know.
+
+  /v1/atlas/actions/{key}/replay:
+    get:
+      tags: [accountability]
+      operationId: replayAction
+      summary: Replay the decision-time envelope
+      description: |
+        What was knowable when the decision was made, and what has changed since. The decision is reported as it
+        was and is never re-decided against today's state.
+
+        The response carries `replay_class: FORENSIC_RECONSTRUCTION`. The classification is in the payload rather
+        than in the documentation, so neither an integrator nor we can mistake what is being offered.
+
+        Where nothing has changed, replay says so — "no later change has been admitted" is a finding.
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          content: { application/json: { schema: { $ref: "#/components/schemas/Replay" } } }
+          description: The reconstructed decision-time envelope.
+        "401": { description: Credential not recognised. }
+        "404": { description: "Not found, including across an organisation boundary." }
+
+  /v1/atlas/whoami:
+    get:
+      tags: [accountability]
+      operationId: whoami
+      summary: Ask what a credential may do
+      description: |
+        The principal, its organisation, and the scopes on the presented credential. **Scopes are an upper bound,
+        not a grant** — what is permitted and what is authorised for a given action are evaluated separately.
+      responses:
+        "200":
+          content: { application/json: { schema: { $ref: "#/components/schemas/WhoAmI" } } }
+          description: The presented credential's identity and scopes.
+        "401": { description: Credential not recognised. }
+
+  /v1/atlas/health:
+    get:
+      tags: [accountability]
+      operationId: health
+      summary: Liveness
+      security: []
+      responses:
+        "200": { description: The service is reachable. }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: |
+        A scoped, revocable credential presented as a bearer token, stored as a hash and re-read on every
+        request. Not OAuth2 and not a JWT. Credentials are issued by Reliant Scale with the customer; there is no
+        public signup and no self-service issuance.
+
+  schemas:
+    Receipt:
+      type: object
+      properties:
+        idempotency_key: { type: string }
+        receipt_id: { type: string }
+        decision: { type: string, enum: [ALLOW, DENY] }
+        reasons:
+          type: array
+          items: { type: string }
+          description: Why the authority evaluation reached this decision.
+        evidence_ref: { type: string, description: The evidence available at decision time. }
+        observed_outcome: { type: string }
+        billed:
+          type: boolean
+          description: False on a retry returning an existing receipt, and false for reads.
+        replay: { type: string, description: Path to the replay for this action. }
+
+    Replay:
+      type: object
+      properties:
+        replay_class:
+          type: string
+          const: FORENSIC_RECONSTRUCTION
+          description: |
+            Stated in the payload on purpose. Atlas reconstructs the stored decision-time envelope; it does not
+            re-execute a model, and makes no claim about what any model would produce today.
+        decided_at: { type: string, format: date-time }
+        knowable_at_decision_time: { type: object }
+        changed_since:
+          type: array
+          items: { type: string }
+          description: Named explicitly. An empty list means no later change has been admitted, which is itself a finding.
+
+    WhoAmI:
+      type: object
+      properties:
+        principal_id: { type: string }
+        principal_type: { type: string }
+        organization_id: { type: string }
+        scopes:
+          type: array
+          items: { type: string }
+          description: An upper bound on what this credential may attempt, never a grant.
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: |
+            Deliberately uninformative on authentication failure: an unknown credential and a revoked credential
+            are refused with identical text, so neither teaches an attacker which keys once existed.

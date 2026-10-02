@@ -1,0 +1,15 @@
+name: Contract or documentation problem
+description: Something in the OpenAPI contract, schemas, docs or examples that is wrong, unclear or missing.
+labels: ["contract"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: What were you trying to build?
+      description: Optional. Never paste a credential or customer data.
