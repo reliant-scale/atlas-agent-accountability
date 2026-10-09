@@ -5,6 +5,8 @@
 Atlas Agent Founding Access is a bounded evaluation for builders and operators whose agent needs to ask one
 concrete evidence question before relying on a claim or taking a consequential next step.
 
+Each sandbox evaluation is an **Atlas Evidence Check**, powered by the **Atlas Evidence Engine**.
+
 The first evaluation uses an RST supplied synthetic evidence set. It is designed to let an agent observe the
 difference between:
 
@@ -20,7 +22,7 @@ evaluation grants no execution authority and accepts no production data.
 
 ## What accepted founding participants receive
 
-Once the remaining private deployment and security gates pass and a grant is activated, an accepted organisation
+Once security/terms gate G and Founder opening gate H pass and a grant is activated, an accepted organisation
 is configured for:
 
 - 10 bounded evidence checks;
@@ -32,6 +34,9 @@ is configured for:
 Credits have no cash value. Paid agent commerce remains separately governed.
 
 ## Request access
+
+The initial intake is bounded to 10 serious founding requests so RST can observe usage, refusals, support load, paid
+interest, and enterprise pull before expanding the cohort. Each request is reviewed against the stated boundaries.
 
 Email [partnerships@reliantscale.com](mailto:partnerships@reliantscale.com?subject=Atlas%20Agent%20Founding%20Access)
 with:
@@ -49,8 +54,10 @@ credential, entitlement, charge, customer account, or production permission.
 ## Current state
 
 - The founding synthetic evidence set has passed its bounded qualification and has been admitted at RST HQ.
-- The governed deployment package is prepared with billing disabled.
-- Private deployment, canary, security, and opening gates remain before sandbox credentials can be issued.
+- The governed artifacts and application code are live behind a private gate with billing disabled.
+- The private production canary passed 19 of 19 checks, including entitlement, evidence states, authority-field
+  refusal, idempotent retry, zero credit movement, and teardown.
+- Security/terms gate G and Founder opening gate H remain before external sandbox credentials can be issued.
 - The four operation Agent Accountability API documented in this repository remains a separate controlled pilot
   surface.
 
