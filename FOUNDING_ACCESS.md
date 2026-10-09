@@ -83,10 +83,12 @@ commitment to build a requested capability.
 - Request intake is open.
 - The founding synthetic evidence set has been admitted at RST HQ.
 - Governed artifacts and application code are live behind a private production gate with billing disabled.
-- The private production canary passed 19 of 19 checks, including entitlement, evidence states, authority-field
-  refusal, idempotent retry, zero credit movement, and teardown.
-- The Gate G candidate passed 12 of 12 off-production checks. Its production deployment, terms disposition, and
-  Founder opening Gate H remain before external Founding Access credentials can be issued.
+- The Atlas Evidence Check catalog language and Gate G text-hygiene cure are live behind the private production gate.
+- The private production canary passed 21 of 21 checks, including entitlement, evidence states, authority-field
+  refusal, hidden-text rejection, idempotent retry, zero credit movement, and teardown.
+- Gate H is prepared to expose only the three exact Evidence Check API routes with a 64 KB request-body limit, but it
+  has not been applied. Terms disposition and Founder opening authority remain before external Founding Access
+  credentials can be issued.
 - RST is seeking 10 serious requests and will begin with a first activation cohort of 3 organizations after Gate H.
 - Paid agent commerce remains inactive.
 
