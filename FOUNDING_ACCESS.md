@@ -1,66 +1,103 @@
-# Atlas Agent Founding Access
+# Bring Your Agent to Atlas
 
-**Request intake is open. Sandbox credentials are not self service yet.**
+**Production-backed infrastructure for AI accountability, evidence intelligence, and governed agent operations.**
 
-Atlas Agent Founding Access is a bounded evaluation for builders and operators whose agent needs to ask one
-concrete evidence question before relying on a claim or taking a consequential next step.
+Reliant Scale Technologies is accepting technical access requests from agent developers, development teams, and
+organizations working on consequential AI systems.
 
-Each sandbox evaluation is an **Atlas Evidence Check**, powered by the **Atlas Evidence Engine**.
+Start with the system. No sales presentation is required.
 
-The first evaluation uses an RST supplied synthetic evidence set. It is designed to let an agent observe the
-difference between:
+Bring one agent, one consequential workflow, or one evidence problem. RST will determine which Atlas capabilities
+apply now, what requires a controlled qualification, and what remains unsupported.
 
-- evidence that supports a claim;
-- evidence that contradicts a claim;
-- sources that conflict;
-- required evidence that is missing;
-- evidence that is stale; and
-- text that tries to grant authority but has no authority to do so.
+## What teams can explore
 
-Results concern the supplied sandbox fixture only. They are not findings about the participant's business. The
-evaluation grants no execution authority and accepts no production data.
+### AI accountability
 
-## What accepted founding participants receive
+Examine what an agent did, what it relied on, what it was allowed to do, what happened afterward, and whether the
+event can be reconstructed. The four-operation Agent Accountability API is live as a controlled pilot surface.
 
-Once security/terms gate G and Founder opening gate H pass and a grant is activated, an accepted organisation
-is configured for:
+### Atlas Evidence Check
 
-- 10 bounded evidence checks;
-- a 14 day evaluation window;
-- a maximum of one credit per check;
-- receipts for completed checks; and
-- no automatic renewal or paid conversion.
+Use the Atlas Evidence Engine to determine what supplied evidence supports, where it conflicts or contradicts, what
+is stale, and what remains unresolved. The first access boundary uses RST-supplied synthetic evidence so teams can
+exercise the capability without exposing customer production data.
 
-Credits have no cash value. Paid agent commerce remains separately governed.
+### VBI and evidence intelligence
 
-## Request access
+Submit a cross-system evidence question for qualification. VBI work is handled through a controlled engagement and
+is not automatically included in a Founding Access grant.
 
-The initial intake is bounded to 10 serious founding requests so RST can observe usage, refusals, support load, paid
-interest, and enterprise pull before expanding the cohort. Each request is reviewed against the stated boundaries.
+### Atlas Vantage Horizon
 
-Email [partnerships@reliantscale.com](mailto:partnerships@reliantscale.com?subject=Atlas%20Agent%20Founding%20Access)
-with:
+Bring one enterprise workflow for a read-only demonstration candidate showing how Atlas can project support,
+conflict, missing evidence, authority, and change across existing systems. Vantage Horizon is an enterprise
+demonstration treatment, not an audit, certification, or standalone product SKU.
 
-1. the exact question your agent needs to ask;
-2. the evidence types it would use;
-3. the workflow that would consume the result;
+## How Founding Access works
+
+```text
+YOUR AGENT / DEVELOPMENT TEAM
+            ↓
+one consequential workflow or evidence need
+            ↓
+RST capability intake
+            ↓
+SUPPORTED NOW / QUALIFICATION REQUIRED / CAPABILITY GAP CANDIDATE
+            ↓
+bounded technical access or the appropriate controlled engagement
+```
+
+Every request receives one of these dispositions:
+
+- `SUPPORTED_NOW`
+- `QUALIFICATION_REQUIRED`
+- `CAPABILITY_GAP_CANDIDATE`
+- `OUT_OF_SCOPE`
+- `PROHIBITED`
+- `DUPLICATE_EXISTING_NEED`
+
+A capability-gap request is market evidence. It does not automatically authorize a feature, expand an agent's
+authority, or change the 1V core.
+
+## Send your requirement
+
+Use the machine-readable [`capability-request` schema](./schemas/capability-request.json) and
+[example request](./examples/json/capability-request.json), or include the same information in an email to
+[partnerships@reliantscale.com](mailto:partnerships@reliantscale.com?subject=Bring%20Your%20Agent%20to%20Atlas):
+
+1. the exact question or operation your agent needs to handle;
+2. the evidence types and systems involved;
+3. the workflow that will consume the result;
 4. the authority the agent already has;
-5. the authority it must never receive; and
-6. the expected frequency and consequence of the decision.
+5. the authority it must never receive;
+6. the expected frequency and consequence of the decision; and
+7. the Atlas path you want to explore, or `UNSURE`.
 
-Do not send credentials, tokens, personal records, customer books, or production data. A request does not create a
-credential, entitlement, charge, customer account, or production permission.
+Do not send credentials, tokens, personal records, customer books, restricted information, or production data.
+Sending a request does not create a credential, entitlement, charge, customer account, production permission, or
+commitment to build a requested capability.
 
-## Current state
+## Current access state
 
-- The founding synthetic evidence set has passed its bounded qualification and has been admitted at RST HQ.
-- The governed artifacts and application code are live behind a private gate with billing disabled.
+- Request intake is open.
+- The founding synthetic evidence set has been admitted at RST HQ.
+- Governed artifacts and application code are live behind a private production gate with billing disabled.
 - The private production canary passed 19 of 19 checks, including entitlement, evidence states, authority-field
   refusal, idempotent retry, zero credit movement, and teardown.
-- Security/terms gate G and Founder opening gate H remain before external sandbox credentials can be issued.
-- The four operation Agent Accountability API documented in this repository remains a separate controlled pilot
-  surface.
+- Security and terms Gate G and Founder opening Gate H remain before external Founding Access credentials can be
+  issued.
+- RST is seeking 10 serious requests and will begin with a first activation cohort of 3 organizations after Gate H.
+- Paid agent commerce remains inactive.
 
-We will update this file when the sandbox opening gate passes. Until then, this page is the canonical public
-request surface rather than a claim that the sandbox is open for self-service use.
+## The first trust boundary
 
+The starting environment uses synthetic evidence. Results concern that evidence only and are not findings about the
+participant's business.
+
+Access is organization-granted, bounded, and revocable. An Atlas Evidence Check has `execution_authority: NONE`.
+Founding Access cannot grant an agent authority to modify an external system, move money, or act for an organization.
+
+This is controlled founding access to production-backed capability. It is not public self-service access.
+
+**Bring your agent. Bring the workflow. Let the evidence establish what comes next.**

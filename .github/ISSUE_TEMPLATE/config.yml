@@ -2,7 +2,7 @@ blank_issues_enabled: false
 contact_links:
   - name: Request Agent Founding Access
     url: https://github.com/reliant-scale/atlas-agent-accountability/blob/main/FOUNDING_ACCESS.md
-    about: Read the bounded evaluation terms and request access privately rather than in an issue.
+    about: Bring your agent, development team or consequential workflow through the private capability-intake path.
   - name: Report a security vulnerability
     url: https://github.com/reliant-scale/atlas-agent-accountability/blob/main/SECURITY.md
     about: Please do not open a public issue for a suspected vulnerability.

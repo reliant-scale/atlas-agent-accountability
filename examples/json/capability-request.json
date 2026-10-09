@@ -1,0 +1,29 @@
+{
+  "schema_version": "ATLAS_AGENT_CAPABILITY_REQUEST_V1",
+  "request_id": "example-request-001",
+  "requester": {
+    "organization": "Example Organization",
+    "team_type": "DEVELOPMENT_TEAM",
+    "contact_name": "Example Requester",
+    "contact_email": "requester@example.org"
+  },
+  "capability_need": {
+    "question_or_operation": "Determine whether the admitted evidence supports an agent's proposed vendor-status update before the downstream workflow relies on it.",
+    "evidence_types": ["synthetic vendor record", "synthetic approval record"],
+    "systems": ["development agent", "test workflow"],
+    "consuming_workflow": "A development workflow uses the structured assessment to decide whether to continue, hold, or request human review.",
+    "expected_frequency": "Several times per development day",
+    "consequence_level": "HIGH"
+  },
+  "authority_boundary": {
+    "current_authority": "The agent may submit synthetic evidence for assessment in the granted environment.",
+    "forbidden_authority": "The agent may not modify production records, initiate payments, or grant itself additional permissions.",
+    "external_action_required": false
+  },
+  "requested_path": "ATLAS_EVIDENCE_CHECK",
+  "data_statement": {
+    "contains_no_credentials": true,
+    "contains_no_production_data": true,
+    "synthetic_start_accepted": true
+  }
+}

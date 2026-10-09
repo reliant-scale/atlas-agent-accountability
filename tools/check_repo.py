@@ -18,6 +18,7 @@ import subprocess
 import sys
 
 import yaml
+from jsonschema import Draft202012Validator
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Words CLAIMS.md says we will not use. CLAIMS.md, SECURITY.md and TRADEMARKS.md must name them, so are exempt.
@@ -47,6 +48,11 @@ def main() -> int:
     for s in sorted((ROOT / "schemas").glob("*.json")):
         json.loads(s.read_text(encoding="utf-8"))
         print("ok  ", s.relative_to(ROOT), "parses")
+    capability_schema = json.loads((ROOT / "schemas" / "capability-request.json").read_text(encoding="utf-8"))
+    capability_example = json.loads((ROOT / "examples" / "json" / "capability-request.json").read_text(encoding="utf-8"))
+    Draft202012Validator.check_schema(capability_schema)
+    Draft202012Validator(capability_schema).validate(capability_example)
+    print("ok   capability request example validates against its public contract")
     for p in sorted((ROOT / "examples").rglob("*.py")):
         py_compile.compile(str(p), doraise=True)
         print("ok  ", p.relative_to(ROOT), "compiles")
