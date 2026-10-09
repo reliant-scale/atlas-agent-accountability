@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Request Atlas access
-    url: https://reliantscale.com/atlas/integrate
-    about: Credentials are opened with Reliant Scale. Start here rather than in an issue.
+  - name: Request Agent Founding Access
+    url: https://github.com/reliant-scale/atlas-agent-accountability/blob/main/FOUNDING_ACCESS.md
+    about: Read the bounded evaluation terms and request access privately rather than in an issue.
   - name: Report a security vulnerability
     url: https://github.com/reliant-scale/atlas-agent-accountability/blob/main/SECURITY.md
     about: Please do not open a public issue for a suspected vulnerability.

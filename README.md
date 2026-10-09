@@ -142,6 +142,7 @@ Honest boundaries, because a technical reviewer rewards what you can show rather
 Credentials are issued by Reliant Scale with the customer. This repository exists so your engineers can evaluate
 the interface **before** anyone talks to sales.
 
+- Agent Founding Access: [request a bounded synthetic evidence evaluation](./FOUNDING_ACCESS.md)
 - Integration surface: <https://reliantscale.com/atlas/integrate>
 - Agent accountability: <https://reliantscale.com/atlas/agent-accountability>
 - Replay: <https://reliantscale.com/atlas/replay>
@@ -166,6 +167,7 @@ docs/                 receipts, replay, credentials, errors
 examples/curl/        the four operations as shell
 examples/python/      a minimal client
 schemas/              receipt and replay JSON Schema
+FOUNDING_ACCESS.md     bounded agent evaluation and current opening state
 CLAIMS.md             what we will and will not say, and why
 SECURITY.md           how to report a vulnerability
 LICENSE · TRADEMARKS.md
