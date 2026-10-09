@@ -85,8 +85,8 @@ commitment to build a requested capability.
 - Governed artifacts and application code are live behind a private production gate with billing disabled.
 - The private production canary passed 19 of 19 checks, including entitlement, evidence states, authority-field
   refusal, idempotent retry, zero credit movement, and teardown.
-- Security and terms Gate G and Founder opening Gate H remain before external Founding Access credentials can be
-  issued.
+- The Gate G candidate passed 12 of 12 off-production checks. Its production deployment, terms disposition, and
+  Founder opening Gate H remain before external Founding Access credentials can be issued.
 - RST is seeking 10 serious requests and will begin with a first activation cohort of 3 organizations after Gate H.
 - Paid agent commerce remains inactive.
 
