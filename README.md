@@ -58,6 +58,12 @@ Most organisations can answer the first and the last.
 
 ---
 
+## A bounded demonstration
+
+[Evidence Conflict](./proofs/evidence-conflict/) shows how Atlas handles two admitted synthetic records that disagree about the same invoice at the same recorded time. The result is `CONFLICTED / HELD`: both origins remain visible, no winner is invented, and execution authority remains `NONE`.
+
+---
+
 ## The four operations
 
 ```
