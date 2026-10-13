@@ -23,6 +23,6 @@ The evidence set includes the request, authority policy, classified result, actu
 
 The proof establishes what happened in this recorded canary. It does not claim that every deployment, integration, or authority policy will behave identically.
 
-- [Bring one authority-sensitive workflow](https://reliantscale.com/qualification)
+- [Run the self-guided Agent Accountability Quickstart ($36)](https://reliantscale.com/products/agent-accountability-quickstart?utm_source=github&utm_medium=repository&utm_campaign=atlas_proof_to_quickstart&utm_content=ATLAS_PROOF_02_AUTHORITY_BOUNDARY)
 - [Request controlled Agent Founding Access](../../FOUNDING_ACCESS.md)
 - [Inspect the Atlas interface](../../openapi.yaml)
