@@ -153,7 +153,7 @@ the interface **before** anyone talks to sales.
 - Integration surface: <https://reliantscale.com/atlas/integrate>
 - Agent accountability: <https://reliantscale.com/atlas/agent-accountability>
 - Replay: <https://reliantscale.com/atlas/replay>
-- Self-guided Agent Accountability Quickstart ($36): <https://reliantscale.com/products/agent-accountability-quickstart>
+- Self-guided Agent Accountability Quickstart ($36): <https://reliantscale.com/products/agent-accountability-quickstart?utm_source=github&utm_medium=repository&utm_campaign=quickstart_canary&utm_content=QUICKSTART_MC_GITHUB_001>
 - partnerships@reliantscale.com
 
 ---
