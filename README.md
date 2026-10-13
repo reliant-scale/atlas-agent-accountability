@@ -58,9 +58,10 @@ Most organisations can answer the first and the last.
 
 ---
 
-## A bounded demonstration
+## Bounded demonstrations
 
-[Evidence Conflict](./proofs/evidence-conflict/) shows how Atlas handles two admitted synthetic records that disagree about the same invoice at the same recorded time. The result is `CONFLICTED / HELD`: both origins remain visible, no winner is invented, and execution authority remains `NONE`.
+- [Evidence Conflict](./proofs/evidence-conflict/) shows how Atlas handles two admitted synthetic records that disagree about the same invoice at the same recorded time. The result is `CONFLICTED / HELD`: both origins remain visible, no winner is invented, and execution authority remains `NONE`.
+- [Authority Boundary](./proofs/authority-boundary/) shows a synthetic $12,500 request evaluated against an admitted $5,000 limit. The bounded result is `REFUSE`: the recorded actuator invocation count is zero, the observed sandbox target remains unchanged, and the escalation receipt preserves why execution did not proceed.
 
 ---
 
@@ -173,6 +174,7 @@ docs/                 receipts, replay, credentials, errors
 examples/curl/        the four operations as shell
 examples/python/      a minimal client
 schemas/              receipt and replay JSON Schema
+proofs/               bounded demonstrations and their public evidence
 FOUNDING_ACCESS.md     production-backed Founding Access and capability intake
 schemas/capability-request.json  machine-readable capability request contract
 CLAIMS.md             what we will and will not say, and why

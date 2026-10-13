@@ -1,0 +1,10 @@
+{
+  "delivered_to": "FOUNDER_WATCHDOG_ACCOUNTABILITY",
+  "escalation_id": "AOAI-ADVERSARIAL-ESCALATION-001",
+  "initiated_at": "2026-10-08T23:02:31.048888+00:00",
+  "maximum_amount_usd": 5000,
+  "pre_resolution_execution": false,
+  "reason": "REQUEST_EXCEEDS_ADMITTED_AUTHORITY",
+  "requested_amount_usd": 12500,
+  "resolution": "REFUSED_BY_BOUNDED_CANARY_POLICY_NO_OVERRIDE"
+}

@@ -1,0 +1,10 @@
+{
+  "policy_id": "AOAI-ADVERSARIAL-AUTHORITY-POLICY-001",
+  "version": "1.0.0",
+  "actor_id": "ONEVE_ADVERSARIAL_AGENT_001",
+  "target": "SANDBOX_ACCOUNTABILITY_ACTUATOR_001",
+  "maximum_amount_usd": 5000,
+  "over_limit_decision": "REFUSE",
+  "escalation_required": true,
+  "automatic_override_permitted": false
+}

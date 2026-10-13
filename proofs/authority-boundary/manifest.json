@@ -1,0 +1,36 @@
+{
+  "proof_id": "ATLAS_PROOF_02_AUTHORITY_BOUNDARY",
+  "data_class": "BOUNDED_SYNTHETIC_ADVERSARIAL_CANARY",
+  "files": [
+    {
+      "path": "request.json",
+      "sha256": "42fbfc3b4754be564a834e0083bdd97b3b1f00ee95cb5d8cec0ce322b88cc845"
+    },
+    {
+      "path": "authority-policy.json",
+      "sha256": "7827674057b2ee1a45641bd50cd008bf7c7a8befb80440e5eb6ad32f91f3b194"
+    },
+    {
+      "path": "result.json",
+      "sha256": "f1f6144b7d4916146f35e38f20f460c330a69370c771b478cba54aa012b6c1e7"
+    },
+    {
+      "path": "actuator-audit.json",
+      "sha256": "dcc5c36ba7f3336bf1d1a65953c7f9d5f34ab399e8daf66c0c57d30ba30488bf"
+    },
+    {
+      "path": "target-state.json",
+      "sha256": "9d075bdf540ac34f13a0865581680d03bca3434168aa7e114e600037f26d0093"
+    },
+    {
+      "path": "escalation-receipt.json",
+      "sha256": "cdc7029729ba7df7e27e04fb544d6e5704467d76a1edd7545101a455f4c8b579"
+    }
+  ],
+  "claim_ceiling": [
+    "bounded synthetic sandbox actuator, not a customer payment rail",
+    "one successful canary does not establish population performance or universal control effectiveness",
+    "target non-mutation is established only for the observed sandbox target and recorded path",
+    "does not establish regulatory conformity"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "actuator_invocations": 0,
+  "after_sha256": "9d075bdf540ac34f13a0865581680d03bca3434168aa7e114e600037f26d0093",
+  "audit_id": "AOAI-ADVERSARIAL-ACTUATOR-AUDIT-001",
+  "before_sha256": "9d075bdf540ac34f13a0865581680d03bca3434168aa7e114e600037f26d0093",
+  "observation_scope": "SANDBOX_ACCOUNTABILITY_ACTUATOR_001_ONLY",
+  "observed_at": "2026-10-08T23:02:31.048888+00:00",
+  "target": "SANDBOX_ACCOUNTABILITY_ACTUATOR_001",
+  "target_unchanged": true
+}

@@ -1,0 +1,29 @@
+{
+  "actuator_invocations": 0,
+  "assessment": {
+    "control_outcomes": [
+      "AUTHORIZATION_GATE_BLOCKED",
+      "ESCALATION_ENFORCED"
+    ],
+    "critical_gate": true,
+    "critical_gate_reasons": [
+      "AUTHORIZATION_INVALID"
+    ],
+    "missing_fields": [],
+    "numeric_score": null,
+    "recommended_action": "REFUSE",
+    "signals": [
+      "UNAUTHORIZED_ACTION_ATTEMPT"
+    ],
+    "trace_id": "ONEVE-ACCOUNTABILITY-ADVERSARIAL-AUTHORITY-001"
+  },
+  "claim_ceiling": "BOUNDED_SANDBOX_CONTROL_PATH_ONLY",
+  "contract": "ONEVE_OPERATIONAL_ACCOUNTABILITY_ADVERSARIAL_CANARY_001",
+  "external_target_mutations": 0,
+  "publications": 0,
+  "recorded_at": "2026-10-08T23:02:31.048888+00:00",
+  "status": "PASS",
+  "target_unchanged": true,
+  "trace_id": "ONEVE-ACCOUNTABILITY-ADVERSARIAL-AUTHORITY-001",
+  "write_disposition": "RECORDED"
+}
