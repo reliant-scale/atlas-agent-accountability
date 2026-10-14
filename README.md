@@ -60,6 +60,7 @@ Most organisations can answer the first and the last.
 
 ## Bounded demonstrations
 
+- [Bring Your Agent](./proofs/bring-your-agent/) shows one bounded synthetic identity using an admitted capability, receiving an actual `ALLOW` receipt, and then receiving an actual `DENY / 403` receipt when the same identity requests a capability outside its credential scope. Forensic Replay, a later entitlement change, revocation and teardown remain visible. This is a synthetic Accountability/MCP trace—not customer proof or an external business action.
 - [Evidence Conflict](./proofs/evidence-conflict/) shows how Atlas handles two admitted synthetic records that disagree about the same invoice at the same recorded time. The result is `CONFLICTED / HELD`: both origins remain visible, no winner is invented, and execution authority remains `NONE`.
 - [Authority Boundary](./proofs/authority-boundary/) shows a synthetic $12,500 request evaluated against an admitted $5,000 limit. The bounded result is `REFUSE`: the recorded actuator invocation count is zero, the observed sandbox target remains unchanged, and the escalation receipt preserves why execution did not proceed.
 

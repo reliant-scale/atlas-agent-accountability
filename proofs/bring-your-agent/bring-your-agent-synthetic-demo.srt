@@ -1,0 +1,57 @@
+1
+00:00:00,000 --> 00:00:14,800
+An agent may be able to use a capability. That does not let it widen its
+authority. This is a synthetic Atlas Accountability and M C P trace. No
+customer or external business action occurs.
+
+2
+00:00:15,000 --> 00:00:34,800
+The synthetic agent identifies itself inside one workspace. Its
+credential exposes only action propose and drill read. Those scopes are
+an upper bound, not a blank check.
+
+3
+00:00:35,000 --> 00:00:57,800
+The agent submits the admitted action, action propose. Atlas returns
+allow, creates receipt R C P, one eight six nine three, C A, three four
+seven F, five four four three C, and records one usage event. The
+observed outcome is submitted. The ceremony does not execute an external
+business action.
+
+4
+00:00:58,000 --> 00:01:11,800
+The exact same request is retried. It returns the same receipt. Usage
+stays at one. Idempotency prevents a second charge for the same
+fingerprint.
+
+5
+00:01:12,000 --> 00:01:36,800
+Now the same identity asks for evidence export source, a capability
+outside its credential scope. Atlas returns deny with status four oh
+three. The reason is exact: outside credential scope. The request can be
+made. The authority cannot be purchased.
+
+6
+00:01:37,000 --> 00:01:49,800
+The refusal leaves its own receipt, and reading it is free. A receipt
+records the decision. It is not a grant, a compliance certificate, or
+proof of customer use.
+
+7
+00:01:50,000 --> 00:02:07,800
+Replay returns a forensic reconstruction of what was knowable at
+decision time. It does not rerun the model, repeat the action, or
+rewrite the result.
+
+8
+00:02:08,000 --> 00:02:19,800
+Later, the workspace entitlement narrows to drill read. Replay names the
+admitted change while the historical allow remains unchanged.
+
+9
+00:02:20,000 --> 00:02:24,800
+Revoked. Access ends. Two receipts remain.
+
+10
+00:02:25,000 --> 00:02:29,800
+Bring your agent. We will test the boundary.
