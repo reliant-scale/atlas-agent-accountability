@@ -62,7 +62,8 @@ authority, or change the 1V core.
 
 ## Send your requirement
 
-Use the machine-readable [`capability-request` schema](./schemas/capability-request.json) and
+Open a [bounded Founding Access request](https://github.com/reliant-scale/atlas-agent-accountability/issues/new?template=bring-your-agent.yml), use the machine-readable
+[`capability-request` schema](./schemas/capability-request.json) and
 [example request](./examples/json/capability-request.json), or include the same information in an email to
 [partnerships@reliantscale.com](mailto:partnerships@reliantscale.com?subject=Bring%20Your%20Agent%20to%20Atlas):
 

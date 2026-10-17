@@ -1,0 +1,70 @@
+name: Bring Your Agent
+description: Request bounded Atlas Founding Access for one consequential agent workflow.
+title: "[Founding Access] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe one agent workflow or evidence problem. This issue is public. Do not include credentials, tokens, personal records, customer information, restricted information, or production data.
+  - type: textarea
+    id: operation
+    attributes:
+      label: Exact question or operation
+      description: What does your agent or development team need to handle?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence types and systems
+      description: Name only the categories of evidence and systems involved. Do not submit data.
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Consuming workflow
+      description: What workflow will use the result, and what happens next?
+    validations:
+      required: true
+  - type: textarea
+    id: existing_authority
+    attributes:
+      label: Authority the agent already has
+      description: Describe current authority boundaries without sharing credentials or configuration.
+    validations:
+      required: true
+  - type: textarea
+    id: prohibited_authority
+    attributes:
+      label: Authority the agent must never receive
+      description: State the actions and access that must remain out of scope.
+    validations:
+      required: true
+  - type: input
+    id: frequency
+    attributes:
+      label: Expected frequency and consequence
+      description: How often does this occur, and what is at stake if it is wrong?
+    validations:
+      required: true
+  - type: dropdown
+    id: atlas_path
+    attributes:
+      label: Atlas path
+      options:
+        - AI accountability
+        - Atlas Evidence Check
+        - VBI and evidence intelligence
+        - Atlas Vantage Horizon
+        - UNSURE
+    validations:
+      required: true
+  - type: checkboxes
+    id: public_safety
+    attributes:
+      label: Public-safety confirmation
+      options:
+        - label: I have not included credentials, tokens, personal records, customer information, restricted information, or production data.
+          required: true
